@@ -30,6 +30,20 @@
 ## Table of Contents (1 page)
 - Provide a tentative chapter list with titles and brief descriptions of each chapter's content.
 
+- EOA, contract accounts
+- ERC20 contracts, tranfer
+- Contract wallet signatures
+- Remix IDE contract deployment
+- Hash functions
+- Digital Signatures
+- EVM, opcodes
+- Ethereum States
+- Peer-to-peer network
+- Validators, consensus mechanism
+- Transaction lifecycle
+- Layer 2s
+- Gas fee. Resource pricing
+
 ## Sample Chapters (2 pages)
 - Include one or two sample chapters to give an idea of your writing style and content depth.
 - Ensure these chapters are polished and represent the overall tone of the book.

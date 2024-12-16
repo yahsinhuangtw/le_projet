@@ -19,6 +19,14 @@
 - List similar books already published, noting their strengths and weaknesses.
 - Explain how your book differs from these titles and fills a gap in the market.
 
+1. **[Mastering Ethereum: Building Smart Contracts and DApps](https://freecomputerbooks.com/Mastering-Ethereum-Building-Smart-Contracts-and-DApps.html)** by Andreas M. Antonopoulos and Gavin Wood
+2. **[Absolute Essentials of Ethereum](https://www.amazon.co.uk/Absolute-Essentials-Ethereum-Blockchain-Developers/dp/1916480080)** by Paul Dylan-Ennis
+3. **[Ethereum: Blockchains & Decentralized Applications](https://www.amazon.co.uk/Ethereum-Blockchains-Decentralized-Applications-Bashir/dp/1838823096)** by Imran Bashir
+4. **[The Infinite Machine: A Journey Through Ethereum and the Future of Money](https://www.amazon.co.uk/Infinite-Machine-Journey-Ethereum-Future/dp/1119610081)** by Camila Russo
+5. **[Getting Started with Ethereum: A Step-by-Step Guide to Becoming a Blockchain Developer](https://www.amazon.co.uk/Getting-Started-Ethereum-Step-Step/dp/B08C7QGZ5H)** by Davi Bauer
+6. **[Ethereum for Beginners](https://www.amazon.co.uk/Ethereum-Beginners-Blockchain-Developers-Guide/dp/B08C7QGZ5H)** by Pamela Kincaid
+7. **[Ethereum Smart Contracts: A Developer’s Guide](https://www.amazon.co.uk/Ethereum-Smart-Contracts-Developers-Guide/dp/178883228X)** by Dr. Gavin Wood
+
 ## Author Biography (1 page)
 - Briefly outline your qualifications, expertise, and previous publications.
 - Mention any platforms or networks that can help promote the book.

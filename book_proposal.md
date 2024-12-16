@@ -20,6 +20,7 @@
 - Explain how your book differs from these titles and fills a gap in the market.
 
 1. **[Mastering Ethereum: Building Smart Contracts and DApps](https://freecomputerbooks.com/Mastering-Ethereum-Building-Smart-Contracts-and-DApps.html)** by Andreas M. Antonopoulos and Gavin Wood
+    - There's a [second edition on 2025](https://www.oreilly.com/library/view/mastering-ethereum-2nd/9781098168414/) that covers more modern topics
 2. **[Absolute Essentials of Ethereum](https://www.amazon.co.uk/Absolute-Essentials-Ethereum-Blockchain-Developers/dp/1916480080)** by Paul Dylan-Ennis
 3. **[Ethereum: Blockchains & Decentralized Applications](https://www.amazon.co.uk/Ethereum-Blockchains-Decentralized-Applications-Bashir/dp/1838823096)** by Imran Bashir
 4. **[The Infinite Machine: A Journey Through Ethereum and the Future of Money](https://www.amazon.co.uk/Infinite-Machine-Journey-Ethereum-Future/dp/1119610081)** by Camila Russo

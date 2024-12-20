@@ -10,13 +10,21 @@
 - Highlight what makes the book unique and its significance in the market.
 - Include a compelling "hook" to engage the reader.
 
-This book is an opinionated allocation of your attentions. Blockchain is a very cognitive demanding subject. The openess of the technical details attracts experts from different domains and offered their best. This cause a problem for the average readers. They'll fall into rabbit holes of every tiny details. They are things we think more important for the general public to know. And we avoid rabbit holes for you. Let me give you some examples,
-consensus mechanism attracts lots of attentions. But maybe for the general public the finality and chain-based fork choice rule are not really important. The security margin created by the staked asset matters more.
-For the other example, people usually equate learning Ethereum to learning Solidity. That's a wrong order to me. It is not like learning a new language like Python vs JavaScript. In Python and Javascript example, you are indeed learning different language, but talking to the same computer and same computation model. For Ethereum, it's a very different computer and computatoin model that you probably haven't seen before. So instead of learning a new language, you should learn about who you are talking to, the new computer.
+This book is a thoughtfully curated guide for your attention. Blockchain is an intellectually demanding subject, and its open technical details draw experts from various domains who offer their best insights. However, this creates a challenge for the average reader, who may get lost in the minutiae of every tiny detail. We believe there are more essential concepts for the general public to understand, so we aim to keep you out of those rabbit holes.
 
-We won't layout about any hands-on instructions. Hands-ons are outdated quickly and requires great effort to deliver smooth experience. We'll leave it to the experts. We'll however describe the hands-on experience in the book. How about sync a full node to get a full decentralization experience? You'll need more than 24 hours to see a mainnet full node in sync. How about syncing a testnet full node and claim some testnet token? It might be harder than you [imagined](https://yahsin.me/2024/12/13/testnet/). What about creating a wallet and write down mnemonic key? Many books have already cover it.
+Let’s illustrate this with a couple of examples.
 
-It's hard to write something down in a constantly fast evoving system. Everything seems to be out-of-date once written down. Everything status quo seems to have rooms of improvements, why not be a builder but be a writter? But Ethereum is already 9 years, some more communication work would be a great contribution to the ecosystem.
+**Consensus mechanisms** tend to attract a lot of attention. However, for most readers, understanding *finality* or the *chain-based fork choice rule* may not be as crucial as grasping the security margin created by the staked assets.
+
+Another example involves **Ethereum**. Many people mistakenly think learning Ethereum means immediately learning Solidity. But this is the wrong approach. It’s not like learning Python versus JavaScript, where different languages operate on the same computer and computational model. In Ethereum, you're engaging with an entirely different kind of computer and computation model, likely one you haven’t encountered before. Therefore, before learning the language, it’s more important to understand *who* you are interacting with: the new, decentralized computer.
+
+We won’t provide hands-on instructions here. These can quickly become outdated and require significant effort to deliver smoothly. Instead, we’ll leave those to the experts. However, we will describe hands-on experiences you might encounter. For example:
+
+- **Syncing a full node** for a fully decentralized experience: It takes more than 24 hours to sync a mainnet full node.
+- **Syncing a testnet full node** and claiming testnet tokens: This can be more challenging than you might expect, as detailed [here](https://yahsin.me/2024/12/13/testnet/).
+- **Creating a wallet** and recording a mnemonic key: Many existing books already cover this process.
+
+Writing about a fast-evolving system like Ethereum is inherently difficult. Everything feels outdated almost as soon as it’s documented. When the status quo always has room for improvement, why write instead of build? Yet, as Ethereum reaches its 9th year, more effective communication could be a valuable contribution to the ecosystem.
 
 
 ## Market Analysis (1 page)

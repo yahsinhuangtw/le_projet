@@ -46,7 +46,8 @@ The good news is, Ethereum is stabilizing. Concepts that once seemed groundbreak
 
 - **[Mastering Ethereum: Building Smart Contracts and DApps](https://freecomputerbooks.com/Mastering-Ethereum-Building-Smart-Contracts-and-DApps.html)** by Andreas M. Antonopoulos and Gavin Wood
     - There's a [second edition on 2025](https://www.oreilly.com/library/view/mastering-ethereum-2nd/9781098168414/) that covers more modern topics
-- **[Absolute Essentials of Ethereum](https://www.amazon.co.uk/Absolute-Essentials-Ethereum-Blockchain-Developers/dp/1916480080)** by Paul Dylan-Ennis
+- **[Absolute Essentials of Ethereum](https://www.amazon.com/Absolute-Essentials-Ethereum-Business-Economics/dp/1032334185)** by Paul Dylan-Ennis
+    - This 2024 book covers good essentials. The introduction chapter covers good technical foundations of Ethereum: Peer-to-peer network, beacon chain, etc. Technical vs political decentralization. It is also less than 100 pages.
 - **[Ethereum: Blockchains & Decentralized Applications](https://www.amazon.co.uk/Ethereum-Blockchains-Decentralized-Applications-Bashir/dp/1838823096)** by Imran Bashir
 - **[The Infinite Machine: A Journey Through Ethereum and the Future of Money](https://www.amazon.co.uk/Infinite-Machine-Journey-Ethereum-Future/dp/1119610081)** by Camila Russo
 - **[Getting Started with Ethereum: A Step-by-Step Guide to Becoming a Blockchain Developer](https://www.amazon.co.uk/Getting-Started-Ethereum-Step-Step/dp/B08C7QGZ5H)** by Davi Bauer

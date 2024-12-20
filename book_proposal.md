@@ -11,7 +11,7 @@
 - Include a compelling "hook" to engage the reader.
 
 
-### No rabbit holes
+### No Rabbit Holes
 
 This book is a thoughtfully curated guide for your attention. Blockchain is an intellectually demanding subject, and its open technical details draw experts from various domains who offer their best insights. However, this creates a challenge for the average reader, who may get lost in the minutiae of every tiny detail. We believe there are more essential concepts for the general public to understand, so we aim to keep you out of those rabbit holes.
 
@@ -21,7 +21,7 @@ Let’s illustrate this with a couple of examples.
 
 Another example involves **Ethereum**. Many people mistakenly think learning Ethereum means immediately learning Solidity. But this is the wrong approach. It’s not like learning Python versus JavaScript, where different languages operate on the same computer and computational model. In Ethereum, you're engaging with an entirely different kind of computer and computation model, likely one you haven’t encountered before. Therefore, before learning the language, it’s more important to understand *who* you are interacting with: the new, decentralized computer.
 
-### No hands-on
+### No Hands-On
 
 We won’t provide hands-on instructions here. These can quickly become outdated and require significant effort to deliver smoothly. Instead, we’ll leave those to the experts. However, we will describe hands-on experiences you might encounter. For example:
 
@@ -29,12 +29,11 @@ We won’t provide hands-on instructions here. These can quickly become outdated
 - **Syncing a testnet full node** and claiming testnet tokens: This can be more challenging than you might expect, as detailed [here](https://yahsin.me/2024/12/13/testnet/).
 - **Creating a wallet** and recording a mnemonic key: Many existing books already cover this process.
 
-### Just status quo
+### Just the Status Quo
 
 Writing about a fast-evolving system like Ethereum is inherently difficult. Everything feels outdated almost as soon as it’s documented. When the status quo always has room for improvement, why write instead of build? Yet, as Ethereum reaches its 9th year, more effective communication could be a valuable contribution to the ecosystem.
 
-The good news is, Ethereum is stablizing. The mindblowing concepts in the past like data-availablilty sampling and zero-knowledge proofs are already slowly entering the system. The new mindblowing stuffs like FHE and Indistinguishability obfuscation are still slowly muddling its way into practicality. Most of the important concepts will stick with us for a while.
-
+The good news is, Ethereum is stabilizing. Concepts that once seemed groundbreaking—such as *data-availability sampling* and *zero-knowledge proofs*—are now gradually being integrated into the system. Meanwhile, new innovations like *fully homomorphic encryption* (FHE) and *indistinguishability obfuscation* are still finding their way into practical use. Most of the key ideas we discuss will remain relevant for a while.
 
 ## Market Analysis (1 page)
 - Identify the target audience and demographics.

@@ -10,6 +10,31 @@
 - Highlight what makes the book unique and its significance in the market.
 - Include a compelling "hook" to engage the reader.
 
+
+### No Rabbit Holes
+
+This book is a thoughtfully curated guide for your attention. Blockchain is an intellectually demanding subject, and its open technical details draw experts from various domains who offer their best insights. However, this creates a challenge for the average reader, who may get lost in the minutiae of every tiny detail. We believe there are more essential concepts for the general public to understand, so we aim to keep you out of those rabbit holes.
+
+Let’s illustrate this with a couple of examples.
+
+**Consensus mechanisms** tend to attract a lot of attention. However, for most readers, understanding *finality* or the *chain-based fork choice rule* may not be as crucial as grasping the security margin created by the staked assets.
+
+Another example involves **Ethereum**. Many people mistakenly think learning Ethereum means immediately learning Solidity. But this is the wrong approach. It’s not like learning Python versus JavaScript, where different languages operate on the same computer and computational model. In Ethereum, you're engaging with an entirely different kind of computer and computation model, likely one you haven’t encountered before. Therefore, before learning the language, it’s more important to understand *who* you are interacting with: the new, decentralized computer.
+
+### No Hands-On
+
+We won’t provide hands-on instructions here. These can quickly become outdated and require significant effort to deliver smoothly. Instead, we’ll leave those to the experts. However, we will describe hands-on experiences you might encounter. For example:
+
+- **Syncing a full node** for a fully decentralized experience: It takes more than 24 hours to sync a mainnet full node.
+- **Syncing a testnet full node** and claiming testnet tokens: This can be more challenging than you might expect, as detailed [here](https://yahsin.me/2024/12/13/testnet/).
+- **Creating a wallet** and recording a mnemonic key: Many existing books already cover this process.
+
+### Just the Status Quo
+
+Writing about a fast-evolving system like Ethereum is inherently difficult. Everything feels outdated almost as soon as it’s documented. When the status quo always has room for improvement, why write instead of build? Yet, as Ethereum reaches its 9th year, more effective communication could be a valuable contribution to the ecosystem.
+
+The good news is, Ethereum is stabilizing. Concepts that once seemed groundbreaking—such as *data-availability sampling* and *zero-knowledge proofs*—are now gradually being integrated into the system. Meanwhile, new innovations like *fully homomorphic encryption* (FHE) and *indistinguishability obfuscation* are still finding their way into practical use. Most of the key ideas we discuss will remain relevant for a while.
+
 ## Market Analysis (1 page)
 - Identify the target audience and demographics.
 - Discuss potential readership and how the book meets their needs.
@@ -19,14 +44,17 @@
 - List similar books already published, noting their strengths and weaknesses.
 - Explain how your book differs from these titles and fills a gap in the market.
 
-1. **[Mastering Ethereum: Building Smart Contracts and DApps](https://freecomputerbooks.com/Mastering-Ethereum-Building-Smart-Contracts-and-DApps.html)** by Andreas M. Antonopoulos and Gavin Wood
+- **[Mastering Ethereum: Building Smart Contracts and DApps](https://freecomputerbooks.com/Mastering-Ethereum-Building-Smart-Contracts-and-DApps.html)** by Andreas M. Antonopoulos and Gavin Wood
     - There's a [second edition on 2025](https://www.oreilly.com/library/view/mastering-ethereum-2nd/9781098168414/) that covers more modern topics
-2. **[Absolute Essentials of Ethereum](https://www.amazon.co.uk/Absolute-Essentials-Ethereum-Blockchain-Developers/dp/1916480080)** by Paul Dylan-Ennis
-3. **[Ethereum: Blockchains & Decentralized Applications](https://www.amazon.co.uk/Ethereum-Blockchains-Decentralized-Applications-Bashir/dp/1838823096)** by Imran Bashir
-4. **[The Infinite Machine: A Journey Through Ethereum and the Future of Money](https://www.amazon.co.uk/Infinite-Machine-Journey-Ethereum-Future/dp/1119610081)** by Camila Russo
-5. **[Getting Started with Ethereum: A Step-by-Step Guide to Becoming a Blockchain Developer](https://www.amazon.co.uk/Getting-Started-Ethereum-Step-Step/dp/B08C7QGZ5H)** by Davi Bauer
-6. **[Ethereum for Beginners](https://www.amazon.co.uk/Ethereum-Beginners-Blockchain-Developers-Guide/dp/B08C7QGZ5H)** by Pamela Kincaid
-7. **[Ethereum Smart Contracts: A Developer’s Guide](https://www.amazon.co.uk/Ethereum-Smart-Contracts-Developers-Guide/dp/178883228X)** by Dr. Gavin Wood
+- **[Absolute Essentials of Ethereum](https://www.amazon.com/Absolute-Essentials-Ethereum-Business-Economics/dp/1032334185)** by Paul Dylan-Ennis
+    - This 2024 book covers good essentials. The introduction chapter covers good technical foundations of Ethereum: Peer-to-peer network, beacon chain, etc. Technical vs political decentralization. It is also less than 100 pages.
+- **[Ethereum: Blockchains & Decentralized Applications](https://www.amazon.co.uk/Ethereum-Blockchains-Decentralized-Applications-Bashir/dp/1838823096)** by Imran Bashir
+- **[The Infinite Machine: A Journey Through Ethereum and the Future of Money](https://www.amazon.co.uk/Infinite-Machine-Journey-Ethereum-Future/dp/1119610081)** by Camila Russo
+- **[Getting Started with Ethereum: A Step-by-Step Guide to Becoming a Blockchain Developer](https://www.amazon.co.uk/Getting-Started-Ethereum-Step-Step/dp/B08C7QGZ5H)** by Davi Bauer
+- **[Ethereum for Beginners](https://www.amazon.co.uk/Ethereum-Beginners-Blockchain-Developers-Guide/dp/B08C7QGZ5H)** by Pamela Kincaid
+- **[Ethereum Smart Contracts: A Developer’s Guide](https://www.amazon.co.uk/Ethereum-Smart-Contracts-Developers-Guide/dp/178883228X)** by Dr. Gavin Wood
+- **[Blockchain Dark Forest Selfguard Handbook](https://darkhandbook.io/)** by Cos from SlowMist Team
+    - This book targets practical wallet security. In our title we'll cover as little as we can.
 
 ## Author Biography (1 page)
 - Briefly outline your qualifications, expertise, and previous publications.

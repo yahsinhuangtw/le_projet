@@ -44,7 +44,8 @@ Writing about a fast-evolving system like Ethereum is inherently difficult. Ever
 - **[Getting Started with Ethereum: A Step-by-Step Guide to Becoming a Blockchain Developer](https://www.amazon.co.uk/Getting-Started-Ethereum-Step-Step/dp/B08C7QGZ5H)** by Davi Bauer
 - **[Ethereum for Beginners](https://www.amazon.co.uk/Ethereum-Beginners-Blockchain-Developers-Guide/dp/B08C7QGZ5H)** by Pamela Kincaid
 - **[Ethereum Smart Contracts: A Developer’s Guide](https://www.amazon.co.uk/Ethereum-Smart-Contracts-Developers-Guide/dp/178883228X)** by Dr. Gavin Wood
-
+- **[Blockchain Dark Forest Selfguard Handbook](https://darkhandbook.io/)** by Cos from SlowMist Team
+    - This book targets practical wallet security. In our title we'll cover as little as we can.
 
 ## Author Biography (1 page)
 - Briefly outline your qualifications, expertise, and previous publications.

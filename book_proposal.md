@@ -10,6 +10,15 @@
 - Highlight what makes the book unique and its significance in the market.
 - Include a compelling "hook" to engage the reader.
 
+This book is an opinionated allocation of your attentions. Blockchain is a very cognitive demanding subject. The openess of the technical details attracts experts from different domains and offered their best. This cause a problem for the average readers. They'll fall into rabbit holes of every tiny details. They are things we think more important for the general public to know. And we avoid rabbit holes for you. Let me give you some examples,
+consensus mechanism attracts lots of attentions. But maybe for the general public the finality and chain-based fork choice rule are not really important. The security margin created by the staked asset matters more.
+For the other example, people usually equate learning Ethereum to learning Solidity. That's a wrong order to me. It is not like learning a new language like Python vs JavaScript. In Python and Javascript example, you are indeed learning different language, but talking to the same computer and same computation model. For Ethereum, it's a very different computer and computatoin model that you probably haven't seen before. So instead of learning a new language, you should learn about who you are talking to, the new computer.
+
+We won't layout about any hands-on instructions. Hands-ons are outdated quickly and requires great effort to deliver smooth experience. We'll leave it to the experts. We'll however describe the hands-on experience in the book. How about sync a full node to get a full decentralization experience? You'll need more than 24 hours to see a mainnet full node in sync. How about syncing a testnet full node and claim some testnet token? It might be harder than you [imagined](https://yahsin.me/2024/12/13/testnet/). What about creating a wallet and write down mnemonic key? Many books have already cover it.
+
+It's hard to write something down in a constantly fast evoving system. Everything seems to be out-of-date once written down. Everything status quo seems to have rooms of improvements, why not be a builder but be a writter? But Ethereum is already 9 years, some more communication work would be a great contribution to the ecosystem.
+
+
 ## Market Analysis (1 page)
 - Identify the target audience and demographics.
 - Discuss potential readership and how the book meets their needs.

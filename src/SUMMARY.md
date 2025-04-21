@@ -3,7 +3,7 @@
 - [Preface](./preface.md)
 - [What Ethereum looks like Today?](./today.md)
 - [Physics of Data](./data.md)
-- [Reasoning with Balances](./balance.md)
+- [Uncommon Senses](./sense.md)
 - [Running a full node](./nodes.md)
 - [System](./system.md)
 - [Consensus](./consensus.md)

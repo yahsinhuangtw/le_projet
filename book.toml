@@ -4,8 +4,3 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Untitled Ethereum book"
-
-[output.html]
-theme = "theme"
-preferred-light-theme = "cozy-goat"
-preferred-dark-theme = "sleepy-goat"

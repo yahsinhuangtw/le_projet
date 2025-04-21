@@ -1,0 +1,6 @@
+[book]
+authors = ["ChihChengLiang", "Yahsin Huang"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Untitled Ethereum book"

@@ -1,3 +1,7 @@
+---
+status: idea
+---
+
 # What Ethereum looks like Today?
 
 

@@ -1,0 +1,29 @@
+name: Chapter Status Check
+
+on:
+  pull_request:
+    paths:
+      - 'src/**.md'
+      - 'tools/status_report.rs'
+
+jobs:
+  check-status:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
+    - name: Build status reporter
+      run: cargo build --bin status_report
+
+    - name: Run status report
+      run: |
+        echo "### Chapter Status" >> $GITHUB_STEP_SUMMARY
+        ./target/debug/status_report >> $GITHUB_STEP_SUMMARY

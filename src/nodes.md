@@ -1,3 +1,7 @@
+---
+status: idea
+---
+
 # Running a full node
 
 Running a full node is the best way to understand the blockchain.

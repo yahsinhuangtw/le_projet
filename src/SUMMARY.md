@@ -6,6 +6,7 @@
 - [Uncommon Senses](./sense.md)
 - [Running a full node](./nodes.md)
 - [System](./system.md)
+- [Upgrade](./upgrade.md)
 - [Consensus](./consensus.md)
 - [Privacy](./privacy.md)
 - [Scaling](./scaling.md)

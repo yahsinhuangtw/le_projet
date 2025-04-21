@@ -1,3 +1,7 @@
+---
+status: draft
+---
+
 # Preface
 
 This is a book I've been wanting to write for so long.

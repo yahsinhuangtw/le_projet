@@ -1,3 +1,7 @@
+---
+status: idea
+---
+
 # Ethereum System
 
 Let's describe the system

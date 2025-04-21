@@ -1,2 +1,6 @@
+---
+status: idea
+---
+
 # Scaling Ethereum
 

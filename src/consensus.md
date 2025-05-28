@@ -2,7 +2,48 @@
 status: idea
 ---
 
+# Primer
+
+A consensus mechanism is an algorithm or rule, that all the nodes follow, and subject to network delays or disruption, or malicious behaviors, under some assumptions, they could make a decsion on some data. People use the word "protocol" and use it as a subject. When readers see "the protocol will do X," that means each protocol byding nodes would do X. People use a specific "chain" to represent the protocol too. A chain contains data which is the outcome from the protocol.
+
+Note that since we can commit data to hashes, nodes can agree on a million peoples' balance by agreeing on the hash of the balances.
+
+When we read a specific actor end with "er" or "or," thinking them as a cyborg, a combination of human and machines. A validator is a human who respond to incentives, they like rewards and avoid lossing their deposits. They are also computers, who can stay up 24 hours sending messages and perform cryptographic actions like signing digital signatures.
+
 # How Ethereum Node form consensus
+
+Ethereum's consensus is handled by now called Gasper protocol, a specific proof of stake implementation. The beacon chain is a system chain taking care of all the consensus responsibilities.
+
+Validators are specialized nodes who participate in consensus. Their work is to send messages to vote and occationally propose a new block. Anyone can become one by putting down 32 ETH for deposit, subject to punishable actions. They got rewarded with new minted Ether for the work and resources they contributed.
+
+Roughly speaking, Gasper has two decision to make. One the short horizon called slots (12 seconds currently), nodes decide on what block to agree on. One a longer horizon, an epoch (10 min and 32 slots), a checkpoint -- an epoch boundary block -- must be finalized.
+
+The messages the validators sent, are called attestations. They contains two pieces of information, a block they recently seen, and a checkpoint they'd like to finalize.
+
+For a full node, they are always under confusion because of network broadcasting delays. They could receive a block A, but later a block B, under the same hight. They make a fork choice by chosing the block that backed by the most attested one. When they learn a checkpoint is finalized, they'll never change the finalized block again.
+
+
+## Why designed in this way?
+
+Being able to propose data to write in a peer-to-peer system is a very powerful. Since the inception of Bitcoin protocol, people have been coming up ways to form consensus and distribute writing permission to public. The later is also called Anti Sybil mechanism.
+
+The point of Anti Sybil is to make acquiring the writing permission costly. Usually it specify a specific type of asset, and a node prove the ownership of the asset to get the write permission. For example, Bitcoin use proof of work mechanism, where a miner attaches on a block a solution to a hash puzzle, a proof of heavy computational work, to demenstrate owning a mining machine and convince nodes to justify the write permission of the block.
+
+The proof of stake, a terrible name that derived from proof of work, is seemingly making the write permission costly by proving the ownership of native token. But that is kind of misleading. First, proving the ownership of native asset is much more trivial -- a digital signature from validator is suffice. Second, the meaning of staking is not just making the write permission costly, but also making the abuse costly. An attacker's asset is indestrutable in for form of physical miner machine in PoW world, but it is in digital form of on chain deposit.
+
+
+
+Attackers acquiring 50% 
+
+- You can halt the chain
+- You can convince the network into one view and later into another view. Double spending is one way the attacker can profit from this way.
+- You can censor people
+
+------
+
+# Unused
+
+
 
 In the p2p system and where money balance is an important application, nodes must agree on the state of the balance. 
 
@@ -58,5 +99,6 @@ The more stake the more secure.
 
 ## Potential references
 
+- https://arxiv.org/pdf/2003.03052
 - https://blog.ethereum.org/2014/11/25/proof-stake-learned-love-weak-subjectivity for subjectivity discussions.
 - https://beaconcha.in/ for current stake numbers

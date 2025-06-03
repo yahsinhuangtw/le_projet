@@ -20,6 +20,7 @@ We'll channel the readers attention in the following order:
 - emergant structure: the desired global view that individuals local view converged to. Note that this global view might take some time to take shape. Nodes agree on what happened 10 min ago but diverge on the 3 seconds ago.
 - protocol abiding behaviors
 - malicious actions prevention
+- performance
 
 A **consensus mechanism** is an algorithm or set of rules that all nodes in a network follow. Even in the presence of network delays, disruptions, or malicious behavior, these rules allow nodes to reach agreement on data—*under certain assumptions*. The term *protocol* is often used interchangeably with *consensus mechanism*. When you see “the protocol will do X,” it means that each node following the protocol will independently perform action X. The term *chain* is also frequently used to refer to the protocol, especially when discussing the data it produces. A chain contains data that reflects the outcome of the protocol.
 
@@ -36,6 +37,8 @@ Ethereum's consensus is governed by the **Gasper** protocol, a specific implemen
 
 - One a shorter time scale, **Slot** (currently 12 seconds), the system agrees on a new block. These blocks can be reverted depends on the nodes' local view.
 - One a longer time scale, **Epoch** (32 slots, \~10 minutes): The system *finalize* a checkpoint (i.e. the block at the boundary of an epoch). When the checkpoint is reached, the node never revert the history behind the checkpoint. Transactions behind it are set in stone.
+
+The chain provide a backbone for frequent inclusion of data, at the tiny risk of revert, while checkpoints provides certainty.
 
 This process is faciliated by specialized nodes called validators and coordinated by the **beacon chain**, a system-level chain that manages all consensus responsibilities.
 
@@ -87,12 +90,18 @@ Equivocate is attributable
 
 What does it mean when we have 34 million Ether staked?
 
-50% attack. 33% attack.
+Currently, the chain ask a quorum of two-third, or 66% stake to finalize the chain. The attacker can put 1/3 in checkpoint A in subnet A and 1/3 in  checkpoint B in subnet B, but then  
 
 The more stake the more secure.
 
 
+## Performance
 
+Signature verification
+
+Deposits
+
+Finality time
 
 
 ## Potential references

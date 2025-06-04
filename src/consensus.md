@@ -1,5 +1,5 @@
 ---
-status: idea
+status: revise
 ---
 
 # Consensus: The Hivemind at Work

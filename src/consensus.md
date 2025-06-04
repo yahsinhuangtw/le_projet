@@ -22,14 +22,12 @@ We'll channel the readers attention in the following order:
 - malicious actions prevention
 - performance
 
-A **consensus mechanism** is an algorithm or set of rules that all nodes in a network follow. Even in the presence of network delays, disruptions, or malicious behavior, these rules allow nodes to reach agreement on data—*under certain assumptions*. The term *protocol* is often used interchangeably with *consensus mechanism*. When you see “the protocol will do X,” it means that each node following the protocol will independently perform action X. The term *chain* is also frequently used to refer to the protocol, especially when discussing the data it produces. A chain contains data that reflects the outcome of the protocol.
+A consensus mechanism is an algorithm or rule, that all the nodes follow, and subject to network delays or disruption, or malicious behaviors, under some assumptions, they could make a decsion on some data. People use the word "protocol" and use it as a subject. When readers see "the protocol will do X," that means each protocol byding nodes would do X. People use a specific "chain" to represent the protocol too. A chain contains data which is the outcome from the protocol.
 
-When you see a role ending in “-er” or “-or” (like *validator*), think of it as a *cyborg*: part human, part machine. A validator is a person responding to economic incentives—they seek rewards and try to avoid penalties like losing their deposit. But a validator is also a computer, running 24/7, sending network messages, and signing cryptographic proofs.
+When we read a specific actor end with "er" or "or," thinking them as a cyborg, a combination of human and machines. A validator is a human who respond to incentives, they like rewards and avoid lossing their deposits. They are also computers, who can stay up 24 hours sending messages and perform cryptographic actions like signing digital signatures.
 
-- TODO: 
-- [ ] blockchain paradigm / State transition
 
-# The global view: Chains and Checkpoints
+# The global view: The chain and their Checkpoints
 
 Ethereum's consensus is governed by the **Gasper** protocol, a specific implementation of proof of stake. The system attempts to create two outcomes:
 
@@ -61,11 +59,9 @@ Validators' onboard and offboard are strictly controled so that attacker can't p
 
 ### Stakes: What's good for that?
 
-Allowing data to be proposed and written in a decentralized, peer-to-peer system is incredibly powerful. Since Bitcoin’s invention, many new consensus mechanisms have emerged to determine who gets *write access* to the ledger. This problem is closely related to what's called the **anti-Sybil** mechanism.
+The point of Anti Sybil is to make acquiring the writing permission costly. Usually it specify a specific type of asset, and a node prove the ownership of the asset to get the write permission. For example, Bitcoin use proof of work mechanism, where a miner attaches on a block a solution to a hash puzzle, a proof of heavy computational work, to demenstrate owning a mining machine and convince nodes to justify the write permission of the block.
 
-The goal of anti-Sybil design is to make acquiring write permission *costly*, thereby discouraging fake identities. Typically, the protocol specifies a type of scarce asset, and nodes must prove ownership of that asset to gain write rights. For instance, Bitcoin uses **proof of work**: miners append a solution to a hash puzzle as proof that they’ve spent significant computing resources. This demonstrates they own real-world mining hardware, justifying their right to propose a block.
-
-Ethereum uses **proof of stake**—a name that imitates "proof of work" but with key differences. It’s misleading to say proof of stake merely makes write access costly by requiring ownership of native tokens. First, proving token ownership is easy: a digital signature suffices. More importantly, *staking* is not just about paying to participate—it’s about making misbehavior expensive. Unlike physical mining equipment, staked tokens are **on-chain deposits**, and they can be destroyed as punishment. This introduces real financial risk for attackers.
+The proof of stake, a terrible name that derived from proof of work, is seemingly making the write permission costly by proving the ownership of native token. But that is kind of misleading. First, proving the ownership of native asset is much more trivial -- a digital signature from validator is suffice. Second, the meaning of staking is not just making the write permission costly, but also making the abuse costly. An attacker's asset is indestrutable in for form of physical miner machine in PoW world, but it is in digital form of on chain deposit.
 
 ### Checkpoint security
 

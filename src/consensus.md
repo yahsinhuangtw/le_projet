@@ -10,17 +10,6 @@ Consider a network of three nodes where you initially have a balance of 10. You 
 
 In this chapter, we unpack Ethereum's hivemind and show how the peer-to-peer network "puts itself together." By the end, you should be able to interpret the security meaning of $100 million in staked value.
 
-## Notes on Communication to Readers
-
-Collective emergent behavior is not easy to describe. Imagine an ant bridge—ants chain themselves together to form a crossing. The bridge is the emergent structure of interest, allowing fellow ants to pass. But to understand the bridge, we must first understand individual ant behaviors—how they hold onto each other's bodies.
-
-We'll channel readers' attention in the following order:
-
-- **Emergent structure**: The desired global view that individual local views converge toward. Note that this global view takes time to solidify. Nodes agree on what happened 10 minutes ago but diverge on events from 3 seconds ago.
-- **Protocol-abiding behaviors** (often called "honest")
-- **Malicious action prevention**
-- **Performance**
-
 A **consensus mechanism** is an algorithm or rule that all nodes follow. Subject to network delays, disruptions, or malicious behaviors, and under certain assumptions, they can make decisions about data. People use the word "protocol" as a subject. When readers see "the protocol will do X," it means each protocol-abiding node will do X. People also use "chain" to represent the protocol. A chain contains data that is the outcome of the protocol.
 
 When we encounter actors ending with "-er" or "-or," think of them as cyborgs—combinations of humans and machines. A validator is a human who responds to incentives, seeking rewards and avoiding deposit losses. They are also computers that stay online 24/7, sending messages and performing cryptographic actions like signing digital signatures.
@@ -99,17 +88,6 @@ Staking service providers might already control substantial portions. The commun
 
 At first glance, more stake seems more secure. But the system also pays validator rewards for their service. The system is parameterized to reward stock market equivalent yields for X stake amounts. Yields decrease when stake size exceeds desired levels and increase when stake size is lower.
 
-## Performance
-
-We want chains finalized as quickly as possible with maximum validators. What prevents this?
-
-The bottleneck is signature verification. To tally validator votes, the system must verify digital signatures, creating tradeoffs between validator size and finality time.
-
-More validators mean more signatures to tally. How do you limit validator size? Raise minimum deposit requirements. The 32 ETH requirement is high, but chosen so that even converting all outstanding Ether to validators, the system retains processing capacity.
-
-More efficient signature schemes would reduce finality time or deposit requirements.
-
-Once signature verification is resolved, network propagation speed becomes the next bottleneck, determining slot time and chain limitations.
 
 ## Conclusion
 

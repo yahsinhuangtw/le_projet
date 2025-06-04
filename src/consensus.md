@@ -2,130 +2,126 @@
 status: idea
 ---
 
-# Consensus: The hivemind at work
+# Consensus: The Hivemind at Work
 
-A peer to peer network has no leaders or "master node" among them. All nodes are equal. But they have to reach a global consensus. All they can do is to broadcast messages to peers. How do they acheive this?
+A peer-to-peer network has no leaders or "master nodes"—all nodes are equal. Yet they must reach global consensus using only broadcast messages to peers. How do they achieve this?
 
-Consider a network of 3 nodes and they agree you have balance of 10 in the beginning. You are one of the node and you are mischivious. You tell the lefthand node you want to send Alice 7 and then the righthand node you send Bob 7. Negative balance is prohibited, so only one of message can go through -- either Alice get 7 or Bob. How would nodes make decisions like this? This is consensus mechanism attempt to resolve. We'll come back to this scenario in a concret example at the end.
+Consider a network of three nodes where you initially have a balance of 10. You are one of the nodes, and you decide to be mischievous. You tell the left node you want to send Alice 7, then tell the right node you want to send Bob 7. Since negative balances are prohibited, only one message can succeed—either Alice gets 7 or Bob does. How do the nodes make this decision? This is what consensus mechanisms attempt to resolve. We'll return to this scenario with a concrete example at the end.
 
-In this chapter, we unpack the hive mind of the Ethereum and show you how the p2p network "put themselve together." In the end, you should able to intepret the security meaning of 100 million USD stake.
+In this chapter, we unpack Ethereum's hivemind and show how the peer-to-peer network "puts itself together." By the end, you should be able to interpret the security meaning of $100 million in staked value.
 
+## Notes on Communication to Readers
 
-## Notes on the communication to readers
+Collective emergent behavior is not easy to describe. Imagine an ant bridge—ants chain themselves together to form a crossing. The bridge is the emergent structure of interest, allowing fellow ants to pass. But to understand the bridge, we must first understand individual ant behaviors—how they hold onto each other's bodies.
 
-A collective emergant behavior is not easy to describe. Imagine an ant bridge -- ants chain themselves together to form a bridge. The bridge is the emergant structure of interest, which allows other ant fellows to pass. But in order to understand the bridge, we'll need to understand the individual behaviors of ants too -- they hold each other's body. 
+We'll channel readers' attention in the following order:
 
-We'll channel the readers attention in the following order:
+- **Emergent structure**: The desired global view that individual local views converge toward. Note that this global view takes time to solidify. Nodes agree on what happened 10 minutes ago but diverge on events from 3 seconds ago.
+- **Protocol-abiding behaviors** (often called "honest")
+- **Malicious action prevention**
+- **Performance**
 
-- emergant structure: the desired global view that individuals local view converged to. Note that this global view might take some time to take shape. Nodes agree on what happened 10 min ago but diverge on the 3 seconds ago.
-- protocol abiding behaviors. (people call this "honest")
-- malicious actions prevention
-- performance
+A **consensus mechanism** is an algorithm or rule that all nodes follow. Subject to network delays, disruptions, or malicious behaviors, and under certain assumptions, they can make decisions about data. People use the word "protocol" as a subject. When readers see "the protocol will do X," it means each protocol-abiding node will do X. People also use "chain" to represent the protocol. A chain contains data that is the outcome of the protocol.
 
-A consensus mechanism is an algorithm or rule, that all the nodes follow, and subject to network delays or disruption, or malicious behaviors, under some assumptions, they could make a decsion on some data. People use the word "protocol" and use it as a subject. When readers see "the protocol will do X," that means each protocol byding nodes would do X. People use a specific "chain" to represent the protocol too. A chain contains data which is the outcome from the protocol.
+When we encounter actors ending with "-er" or "-or," think of them as cyborgs—combinations of humans and machines. A validator is a human who responds to incentives, seeking rewards and avoiding deposit losses. They are also computers that stay online 24/7, sending messages and performing cryptographic actions like signing digital signatures.
 
-When we read a specific actor end with "er" or "or," thinking them as a cyborg, a combination of human and machines. A validator is a human who respond to incentives, they like rewards and avoid lossing their deposits. They are also computers, who can stay up 24 hours sending messages and perform cryptographic actions like signing digital signatures.
+# The Global View: Chains and Checkpoints
 
+Ethereum's consensus operates under the **Gasper** protocol, a specific proof-of-stake implementation. The system creates two outcomes:
 
-# The global view: The chain and their Checkpoints
+- **Short-term (Slots)**: Every 12 seconds, the system agrees on a new block. These blocks can be reverted depending on nodes' local views.
+- **Long-term (Epochs)**: Every 32 slots (~10 minutes), the system *finalizes* a checkpoint (the block at an epoch boundary). Once reached, nodes never revert the history behind the checkpoint—those transactions are set in stone.
 
-Ethereum's consensus is governed by the **Gasper** protocol, a specific implementation of proof of stake. The system attempts to create two outcomes:
+The chain provides a backbone for frequent data inclusion with minimal reversion risk, while checkpoints provide certainty.
 
-- One a shorter time scale, **Slot** (currently 12 seconds), the system agrees on a new block. These blocks can be reverted depends on the nodes' local view.
-- One a longer time scale, **Epoch** (32 slots, \~10 minutes): The system *finalize* a checkpoint (i.e. the block at the boundary of an epoch). When the checkpoint is reached, the node never revert the history behind the checkpoint. Transactions behind it are set in stone.
+This process involves specialized nodes called validators, coordinated by the **beacon chain**—a system-level chain managing all consensus responsibilities.
 
-The chain provide a backbone for frequent inclusion of data, at the tiny risk of revert, while checkpoints provides certainty.
+## Validators: Consensus Participants
 
-This process is faciliated by specialized nodes called validators and coordinated by the **beacon chain**, a system-level chain that manages all consensus responsibilities.
+Validators vote on blocks and occasionally propose new ones. Anyone can become a validator by depositing 32 ETH. Misbehavior is penalized, while honest participation earns newly minted Ether as rewards.
 
-## Validators: Actors who participate consensus
+Validators send messages called **attestations** containing two key pieces of information:
 
-Validators' job is to vote on blocks and occasionally propose new ones. Anyone can become a validator by depositing 32 ETH. Misbehavior is penalized, while honest participation earns newly minted Ether as a reward.
+1. The most recent block they've seen
+2. The checkpoint they support for finalization
 
+Due to network delays, full nodes constantly resolve uncertainty. When they receive two blocks (A and B) at the same height, they apply a **fork-choice rule**: choose the block with the most attestation support. Once a checkpoint is finalized, nodes never revert it—treating it as irreversible.
 
+### Validator Lifecycle
 
-Validators send messages called **attestations**, which include two key pieces of information:
+Validator onboarding and offboarding are strictly controlled so attackers can't perform sudden entry-and-exit attacks.
 
-1. The most recent block they’ve seen.
-2. The checkpoint they support for finalization.
+## Security: Preventing Malicious Validator Actions
 
-Because of network delays, full nodes are constantly resolving uncertainty. They might receive two blocks (say, A and B) at the same height. In such cases, they apply a **fork-choice rule**: choose the block that has the most attestation support. Once a checkpoint is finalized, nodes will never revert it—they treat it as an irreversible decision.
+### Stakes: Their Purpose
 
-### Validator life cycle
+The point of anti-Sybil mechanisms is making write permission acquisition costly. Usually, this specifies a particular asset type, and nodes prove asset ownership to gain write permission. For example, Bitcoin uses proof of work, where miners attach block solutions to hash puzzles—proof of heavy computational work—demonstrating mining machine ownership and justifying block write permission.
 
-Validators' onboard and offboard are strictly controled so that attacker can't perform the attack with a sudden entry and exit.
+Proof of stake—a name derived from proof of work—seemingly makes write permission costly by proving native token ownership. But this is misleading. First, proving native asset ownership is trivial—a validator's digital signature suffices. Second, staking means not just making write permission costly, but making abuse costly. An attacker's assets are indestructible physical mining machines in the proof-of-work world, but they exist as destructible on-chain deposits in proof of stake.
 
-## Security: What had things validators can do and how to prevent that?
+### Checkpoint Security
 
-### Stakes: What's good for that?
+A healthy system should build consistent checkpoints without interruption. We can break this down into two security properties:
 
-The point of Anti Sybil is to make acquiring the writing permission costly. Usually it specify a specific type of asset, and a node prove the ownership of the asset to get the write permission. For example, Bitcoin use proof of work mechanism, where a miner attaches on a block a solution to a hash puzzle, a proof of heavy computational work, to demenstrate owning a mining machine and convince nodes to justify the write permission of the block.
+- **Safety**: The network doesn't split by creating conflicting checkpoints
+- **Liveness**: The network continues finalizing new checkpoints
 
-The proof of stake, a terrible name that derived from proof of work, is seemingly making the write permission costly by proving the ownership of native token. But that is kind of misleading. First, proving the ownership of native asset is much more trivial -- a digital signature from validator is suffice. Second, the meaning of staking is not just making the write permission costly, but also making the abuse costly. An attacker's asset is indestrutable in for form of physical miner machine in PoW world, but it is in digital form of on chain deposit.
+Note that Gasper doesn't guarantee these properties under all circumstances—it sets clear boundaries on violation costs. We'll discuss recovery strategies later.
 
-### Checkpoint security
+What can an attacker owning substantial asset shares do? Since full nodes must follow state transition rules, they can reject invalid blocks that fail basic checks.
 
-A healthy system should build consistant checkpoints without interruption. We can breakdown this desired situation into  two security properties:
+For consensus attacks, attackers can:
 
-- Safety: network don't split by making conflicting checkpoints 
-- Liveness: network can keep finalizing new checkpoints
+- **Equivocate**: Attempt to split the network by sending conflicting messages
+- **Go offline**: Attempt to halt the chain by withholding messages
 
-Note that Gasper doesn't gurantee the two properties are always satisfied no matter what. It set a clear boundary on how costly to break it. We'll talk about a recovery strategy later.
+Equivocation is attributable—conflicting messages can be collected and computationally verified for violations, triggering heavy penalties and high violation costs.
 
-What can an attacker owning a susstaintiable shares of the asset pie can do? Since the full node must follow the state transition rule, they can reject an invalid block that failed some basic checks. 
+Going offline is non-attributable. When validators are accused of censoring by not voting on checkpoints, we can't distinguish between actual offline status and censorship. This behavior receives light initial penalties that gradually increase through "quadratic leaking." In practice, home stakers may go offline for legitimate reasons—traveling, power outages, client software updates. The protocol requires single validator uptime of at least two-thirds of a year, so minor offline periods don't significantly hurt profits.
 
-For attacking the consensus [^censor], What the attacker left to do is the following:
+### The Meaning of Staking Security
 
-- Equivocate: They can attempt to split the network by sending conflicting messgaes
-- Offline: They can attempt to halt the chain by not sending messages
+What does having 34 million Ether staked mean?
 
-Equivocate is attributable action, conflicting messages can be collected and computationally confirm the violation, so that the system apply a heavy penalty to the behavior, resulting a high cost in violation.
+Currently, the chain requires a two-thirds (66%) stake quorum to finalize. To break safety—creating conflicting checkpoints that split the network—attackers need two-thirds of the stake. After such attacks, conflicting messages can be collected to trigger slashing, vaporizing the attacking capital.
 
-Offline is non-attributable action. When a validator is accused of censoring by not voting checkpoints, we can't tell if they are actually offline or people are censoring them. The behavior is penalized lightly initially, but gradually increasing, called quadratice leaking. In practice, a home staker could be offline for certain reasons -- traveling, power outage, client software update, etc. The protocol is designed to require uptime for a single validator to be at least 2/3 of a year so that a minor offline wouldn't hurt profit too much. 
+The protocol assumes breakability but also recoverability. Safety faults causing two conflicting finalized checkpoints require minority soft forks to choose a recovery checkpoint.
 
-### The meaning of staking security
+Attackers can also initiate liveness attacks by acquiring more than one-third of the stake and stopping checkpoint building. The chain becomes unusable until attacking funds drain through quadratic leaking—until honest nodes regain two-thirds control.
 
-What does it mean when we have 34 million Ether staked?
+There's a fundamental tradeoff between safety and liveness attack tolerance. Requiring X shares for finalization means X tolerance for safety attacks and 1-X for liveness attacks. Safety attacks are generally considered more severe, which is why the protocol is parameterized to tolerate them.
 
-Currently, the chain ask a quorum of two-third, or 66% stake to finalize the chain. To break safety -- meaning creating conflicting checkpoints to split the network -- The attacker needs to acquire 2/3 of the stake. And surely after the attack, the conflicting messages can be collected and trigger the slashing process. The attacking capital would be vaporized.
+We need to discuss how attackers acquire X shares. Naively, getting two-thirds of 34 million Ether might require obtaining another 68 million Ether through the deposit process. Realistically, they could buy 22 million Ether equivalent from existing validators or infect those nodes through cyberattacks without purchasing them.
 
-The protocol is assumed to be breakable but also recoverable. A safety fault causes two conflicting checkpoints being finalized, which requires a minority softfork to choose a checkpoint for recovery.
+Staking service providers might already control substantial portions. The community advocates avoiding staking services, recommending home staking instead. Home stakers should also diversify their software and hardware stacks—client software, operating systems, hardware—to prevent cyberattacks from acquiring large portions.
 
-The attacker can also initiate a liveness attack by acquiring more than 1/3 of the pie and stop building any checkpoints. The chain would be unusable for a while until the attacking fund is drained up by the quadratice leaking -- to the point that honest nodes get back to 2/3.
+#### How Much Stake Is Enough?
 
-There's a fundamental tradeoff between tolerance to safety and to liveness attack -- requiring X shares for finalization means a tolerance for X in safety attack and 1-X for liveness attack. It is generally considered the safety attack is more sever than a liveness attack. That's why the protocol is parameterized to tolerate the former.
-
-Here we need to talk about how the attacker get X shares of the pie. Naively, getting 2/3 of pie for 34 million Ether might mean getting another 68 million Ether and go through the deposit process. Realistically, they can buy 22 million Ether equivalent of nodes from existing validators. Or, they could just infect those nodes with cyberattacks without even buying them.
-
-For staking service providers they might already get a sustansive pie. The community has been advocating people to avoid using staking services. Home staking is the recommended way of staking. It is also recommended for the home stakers to diversify their software and hardware stacks -- the client software they used, operating systems run, hardware they use -- to prevent a cyberattack to acquire a big pie.
-
-#### How much stake is enough?
-
-At the first glance, it seems the more stake the more secure. But the system also pays validator rewards for their service. The system is parameterized to reward a stock market equivalent of yield to a X amount of stake size. The yeild decreases when the stake size is greater than desired; and increases when the stake size is lower. 
-
+At first glance, more stake seems more secure. But the system also pays validator rewards for their service. The system is parameterized to reward stock market equivalent yields for X stake amounts. Yields decrease when stake size exceeds desired levels and increase when stake size is lower.
 
 ## Performance
 
-We want to the chain to be finalized as soon as possible. We also want the validators as more as possible. What prevent us from doing that?
+We want chains finalized as quickly as possible with maximum validators. What prevents this?
 
-The bottleneck is the signature verification. To tally validators' votes, the system need to verify their digital signatures. This creates a trade-offs in validator size and finality time.
+The bottleneck is signature verification. To tally validator votes, the system must verify digital signatures, creating tradeoffs between validator size and finality time.
 
-The more validators, the more signatures to tally. How do you limit the size of validators? You raise the minimum deposit size. The 32 ETH is a really high number. But this number is chosen so that even if you buy all the outstanding Ethers and turn them into validators, the system still have the capacity to process them.
+More validators mean more signatures to tally. How do you limit validator size? Raise minimum deposit requirements. The 32 ETH requirement is high, but chosen so that even converting all outstanding Ether to validators, the system retains processing capacity.
 
-Imagine a more efficient siganture scheme is invented. This would bring down the finality time or deposit size.
+More efficient signature schemes would reduce finality time or deposit requirements.
 
-Once the signature verification is resolved. The next bottlenck would be the network propogation speed. This determine the slot time and a bottlenexk for the chain. 
+Once signature verification is resolved, network propagation speed becomes the next bottleneck, determining slot time and chain limitations.
 
 ## Conclusion
 
-Getting back to the examples in the beginning. Your transactions would have the same nonce. Assume a validator pack one of your transaction in their block, another packed another block.  When left node see your messages, it adjust its local view and deduct your balance 7 and add them to Alice's. The right node do the similar to the other transaction, deduct 7 from you and add to Bob. It could the case that the block with traction to Alice outweight the other -- either beating it by the time, either beating it by getting more attesations -- and made its way to the chain -- that all the nodes would follow the fork choice rule and recognize it as the latest chain head. The right node, originally applied the block containing Bob's transaction, now see the block with Alice's transaction, reorg to the later -- it rollback the state to where you have balance of 10 and then move 7 to alice. Now all the nodes agree that you now have balance of 3 and Alice has 7 more. A while later, the block containing tx to alice fall behind a checkpoint block. The transaction is finalized and never changed.
+Returning to our opening example: your transactions would have the same nonce. Assume one validator packs your transaction to Alice in their block, while another packs your transaction to Bob in theirs. When the left node sees your message, it adjusts its local view, deducting 7 from your balance and adding it to Alice's. The right node does similarly for the other transaction, deducting 7 from you and adding to Bob.
 
-The order of the transactions matters to the state. And the Ethereum consensus is designed to set the "Order" of the system. 
+The block with Alice's transaction might outweigh the other—either by timing or gathering more attestations—making its way onto the chain. All nodes follow the fork choice rule, recognizing it as the latest chain head. The right node, originally applying Bob's transaction block, now sees Alice's transaction block and reorganizes to the latter. It rolls back the state to your balance of 10, then moves 7 to Alice. Now all nodes agree you have a balance of 3 and Alice has 7 more. Later, the block containing Alice's transaction falls behind a checkpoint block. The transaction is finalized and never changes.
 
-Readers might worry that there are lot of data to form consensus on. Thanks to cryptographic hashes, nodes can agree on massive amounts of information—such as the balances of a million accounts—simply by agreeing on a single hash that commits to that data. Infact, The system reach consensus on chain head, which is the block head's hash. The consensus block's body has execution payload, a block hash of application chain, so that the consensus covers the execution client. Finally, rollups are covered by the consensus too because their rollup batch hash is commited to an Ethereum account.
+Transaction order matters to state, and Ethereum consensus is designed to establish the system's "order."
 
-From this we can see the consensus and the staked Ether can be "scaled" to cover a broader system. States of the rollups and other system can be piggybacked to Ethereum consensus, without finding another new capitals to build more consensus security defense. And this is the goal of Ethereum, a prudent organization of p2p network that reuse all resousces it can make application develpers focusing on what they really good at -- serving users needs. 
+Readers might worry about the vast amount of data requiring consensus. Thanks to cryptographic hashes, nodes can agree on massive information—like millions of account balances—by agreeing on a single hash committing to that data. The system reaches consensus on the chain head (the block head's hash). The consensus block's body contains an execution payload—an application chain block hash—so consensus covers the execution client. Finally, rollups are covered by consensus because their batch hashes are committed to Ethereum accounts.
 
+From this, we see how consensus and staked Ether can "scale" to cover broader systems. Rollup states and other systems can piggyback on Ethereum consensus without requiring new capital for additional consensus security. This is Ethereum's goal: a prudent peer-to-peer network organization that reuses all available resources, letting application developers focus on what they do best—serving user needs.
 
 ## Potential references
 

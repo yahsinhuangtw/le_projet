@@ -18,13 +18,11 @@ A collective emergant behavior is not easy to describe. Imagine an ant bridge --
 We'll channel the readers attention in the following order:
 
 - emergant structure: the desired global view that individuals local view converged to. Note that this global view might take some time to take shape. Nodes agree on what happened 10 min ago but diverge on the 3 seconds ago.
-- protocol abiding behaviors
+- protocol abiding behaviors. (people call this "honest")
 - malicious actions prevention
 - performance
 
 A **consensus mechanism** is an algorithm or set of rules that all nodes in a network follow. Even in the presence of network delays, disruptions, or malicious behavior, these rules allow nodes to reach agreement on data—*under certain assumptions*. The term *protocol* is often used interchangeably with *consensus mechanism*. When you see “the protocol will do X,” it means that each node following the protocol will independently perform action X. The term *chain* is also frequently used to refer to the protocol, especially when discussing the data it produces. A chain contains data that reflects the outcome of the protocol.
-
-Readers might worry that there are lot of data to form consensus on. Thanks to cryptographic hashes, nodes can agree on massive amounts of information—such as the balances of a million accounts—simply by agreeing on a single hash that commits to that data. Infact, The system reach consensus on chain head, which is the block head's hash. The consensus block's body has execution payload, a block hash of application chain, so that the consensus covers the execution client. Finally, rollups are covered by the consensus too because their rollup batch hash is commited to an Ethereum account.
 
 When you see a role ending in “-er” or “-or” (like *validator*), think of it as a *cyborg*: part human, part machine. A validator is a person responding to economic incentives—they seek rewards and try to avoid penalties like losing their deposit. But a validator is also a computer, running 24/7, sending network messages, and signing cryptographic proofs.
 
@@ -71,37 +69,66 @@ Ethereum uses **proof of stake**—a name that imitates "proof of work" but with
 
 ### Checkpoint security
 
+A healthy system should build consistant checkpoints without interruption. We can breakdown this desired situation into  two security properties:
+
 - Safety: network don't split by making conflicting checkpoints 
 - Liveness: network can keep finalizing new checkpoints
+
+Note that Gasper doesn't gurantee the two properties are always satisfied no matter what. It set a clear boundary on how costly to break it. We'll talk about a recovery strategy later.
 
 What can an attacker owning a susstaintiable shares of the asset pie can do? Since the full node must follow the state transition rule, they can reject an invalid block that failed some basic checks. 
 
 For attacking the consensus [^censor], What the attacker left to do is the following:
 
 - Equivocate: They can attempt to split the network by sending conflicting messgaes
-- Censorship: They can attempt to halt the chain by not proposing blocks
+- Offline: They can attempt to halt the chain by not sending messages
 
+Equivocate is attributable action, conflicting messages can be collected and computationally confirm the violation, so that the system apply a heavy penalty to the behavior, resulting a high cost in violation.
 
-Censorship is non-attributable
-Equivocate is attributable
-
+Offline is non-attributable action. When a validator is accused of censoring by not voting checkpoints, we can't tell if they are actually offline or people are censoring them. The behavior is penalized lightly initially, but gradually increasing, called quadratice leaking. In practice, a home staker could be offline for certain reasons -- traveling, power outage, client software update, etc. The protocol is designed to require uptime for a single validator to be at least 2/3 of a year so that a minor offline wouldn't hurt profit too much. 
 
 ### The meaning of staking security
 
 What does it mean when we have 34 million Ether staked?
 
-Currently, the chain ask a quorum of two-third, or 66% stake to finalize the chain. The attacker can put 1/3 in checkpoint A in subnet A and 1/3 in  checkpoint B in subnet B, but then  
+Currently, the chain ask a quorum of two-third, or 66% stake to finalize the chain. To break safety -- meaning creating conflicting checkpoints to split the network -- The attacker needs to acquire 2/3 of the stake. And surely after the attack, the conflicting messages can be collected and trigger the slashing process. The attacking capital would be vaporized.
 
-The more stake the more secure.
+The protocol is assumed to be breakable but also recoverable. A safety fault causes two conflicting checkpoints being finalized, which requires a minority softfork to choose a checkpoint for recovery.
+
+The attacker can also initiate a liveness attack by acquiring more than 1/3 of the pie and stop building any checkpoints. The chain would be unusable for a while until the attacking fund is drained up by the quadratice leaking -- to the point that honest nodes get back to 2/3.
+
+There's a fundamental tradeoff between tolerance to safety and to liveness attack -- requiring X shares for finalization means a tolerance for X in safety attack and 1-X for liveness attack. It is generally considered the safety attack is more sever than a liveness attack. That's why the protocol is parameterized to tolerate the former.
+
+Here we need to talk about how the attacker get X shares of the pie. Naively, getting 2/3 of pie for 34 million Ether might mean getting another 68 million Ether and go through the deposit process. Realistically, they can buy 22 million Ether equivalent of nodes from existing validators. Or, they could just infect those nodes with cyberattacks without even buying them.
+
+For staking service providers they might already get a sustansive pie. The community has been advocating people to avoid using staking services. Home staking is the recommended way of staking. It is also recommended for the home stakers to diversify their software and hardware stacks -- the client software they used, operating systems run, hardware they use -- to prevent a cyberattack to acquire a big pie.
+
+#### How much stake is enough?
+
+At the first glance, it seems the more stake the more secure. But the system also pays validator rewards for their service. The system is parameterized to reward a stock market equivalent of yield to a X amount of stake size. The yeild decreases when the stake size is greater than desired; and increases when the stake size is lower. 
 
 
 ## Performance
 
-Signature verification
+We want to the chain to be finalized as soon as possible. We also want the validators as more as possible. What prevent us from doing that?
 
-Deposits
+The bottleneck is the signature verification. To tally validators' votes, the system need to verify their digital signatures. This creates a trade-offs in validator size and finality time.
 
-Finality time
+The more validators, the more signatures to tally. How do you limit the size of validators? You raise the minimum deposit size. The 32 ETH is a really high number. But this number is chosen so that even if you buy all the outstanding Ethers and turn them into validators, the system still have the capacity to process them.
+
+Imagine a more efficient siganture scheme is invented. This would bring down the finality time or deposit size.
+
+Once the signature verification is resolved. The next bottlenck would be the network propogation speed. This determine the slot time and a bottlenexk for the chain. 
+
+## Conclusion
+
+Getting back to the examples in the beginning. Your transactions would have the same nonce. Assume a validator pack one of your transaction in their block, another packed another block.  When left node see your messages, it adjust its local view and deduct your balance 7 and add them to Alice's. The right node do the similar to the other transaction, deduct 7 from you and add to Bob. It could the case that the block with traction to Alice outweight the other -- either beating it by the time, either beating it by getting more attesations -- and made its way to the chain -- that all the nodes would follow the fork choice rule and recognize it as the latest chain head. The right node, originally applied the block containing Bob's transaction, now see the block with Alice's transaction, reorg to the later -- it rollback the state to where you have balance of 10 and then move 7 to alice. Now all the nodes agree that you now have balance of 3 and Alice has 7 more. A while later, the block containing tx to alice fall behind a checkpoint block. The transaction is finalized and never changed.
+
+The order of the transactions matters to the state. And the Ethereum consensus is designed to set the "Order" of the system. 
+
+Readers might worry that there are lot of data to form consensus on. Thanks to cryptographic hashes, nodes can agree on massive amounts of information—such as the balances of a million accounts—simply by agreeing on a single hash that commits to that data. Infact, The system reach consensus on chain head, which is the block head's hash. The consensus block's body has execution payload, a block hash of application chain, so that the consensus covers the execution client. Finally, rollups are covered by the consensus too because their rollup batch hash is commited to an Ethereum account.
+
+From this we can see the consensus and the staked Ether can be "scaled" to cover a broader system. States of the rollups and other system can be piggybacked to Ethereum consensus, without finding another new capitals to build more consensus security defense. And this is the goal of Ethereum, a prudent organization of p2p network that reuse all resousces it can make application develpers focusing on what they really good at -- serving users needs. 
 
 
 ## Potential references

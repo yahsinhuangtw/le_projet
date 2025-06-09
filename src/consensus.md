@@ -40,6 +40,18 @@ Due to network delays, full nodes constantly resolve uncertainty. When they rece
 
 Validator onboarding and offboarding are strictly controlled so attackers can't perform sudden entry-and-exit attacks.
 
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> Deposited: Stake 32 ETH
+    Deposited --> Active: Wait in Entry Queue
+    Active --> Exiting: Happy path - Request Withdrawal
+    Active --> Exiting: Violation - Slashing
+    Active --> Exiting: Balance Fall Below Threshold
+    Exiting --> Exited: Wait in Exit Queue <br> (Still punishable)
+    Exited --> [*]: Withdrawable
+```
+
 ## Security: Preventing Malicious Validator Actions
 
 ### Stakes: Their Purpose

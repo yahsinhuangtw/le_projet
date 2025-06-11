@@ -8,6 +8,7 @@
 - [System](./system.md)
 - [Upgrade](./upgrade.md)
 - [Consensus](./consensus.md)
+- [Pricing](./pricing.md)
 - [Privacy](./privacy.md)
 - [Scaling](./scaling.md)
 - [Appendix](./appendix.md)
